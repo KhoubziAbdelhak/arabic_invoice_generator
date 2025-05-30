@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+# __pycache__/ - Keeping the data/__pycache__ folder
 *.py[cod]
 *$py.class
 
@@ -64,16 +64,22 @@ dmypy.json
 
 # Project specific
 output/
+ocr_dataset/
 visualization_output/
 bbox_visualizations/
 *.zip
 document_augmentor.log
 *.pdf
-*.jpg
-*.jpeg
+# Allowing .jpg files in data/textures
+# *.jpg
+# *.jpeg
 *.png
 *.tif
 *.tiff
+
+# Explicitly allow data folder content
+!data/
+!data/**/*
 
 # IDE specific files
 .idea/

@@ -264,8 +264,8 @@ class DocumentAugmentor:
         transformed_vertices = []
 
         try:
-            # Convert to correct format for cv2.perspectiveTransform
-            points_array = np.array([vertex for vertex in vertices], dtype=np.float32)
+            # Convert the vertices dictionary to array format that cv2 can use
+            points_array = np.array([[vertex['x'], vertex['y']] for vertex in vertices], dtype=np.float32)
 
             # Need to reshape for perspectiveTransform
             points_array = points_array.reshape(-1, 1, 2)
