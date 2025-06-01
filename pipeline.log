@@ -1,6 +1,0 @@
-2025-06-01 18:37:51,585 - InvoiceGenerator - INFO - Running: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/venv/bin/python3 /var/home/abdelhak/programming/pfe/arabic_invoice_generator/generate_dataset.py
-2025-06-01 18:37:57,496 - InvoiceGenerator - INFO - Completed generate_dataset.py in 5.91 seconds
-2025-06-01 18:37:57,496 - InvoiceGenerator - INFO - Running: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/venv/bin/python3 /var/home/abdelhak/programming/pfe/arabic_invoice_generator/augment_dataset.py
-2025-06-01 18:38:20,983 - InvoiceGenerator - INFO - Completed augment_dataset.py in 23.49 seconds
-2025-06-01 18:38:20,984 - InvoiceGenerator - INFO - Running: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/venv/bin/python3 /var/home/abdelhak/programming/pfe/arabic_invoice_generator/temp_visualize.py
-2025-06-01 18:38:21,761 - InvoiceGenerator - INFO - Completed temp_visualize.py in 0.78 seconds

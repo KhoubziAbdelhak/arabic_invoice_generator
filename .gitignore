@@ -76,6 +76,7 @@ document_augmentor.log
 *.png
 *.tif
 *.tiff
+*.log
 
 # Explicitly allow data folder content
 !data/
