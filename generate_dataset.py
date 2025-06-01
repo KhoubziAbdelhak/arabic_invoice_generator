@@ -8,6 +8,7 @@ from faker import Faker
 import os
 
 def generate_dataset():
+    # Initialize Faker with Arabic locale
     fake = Faker('ar_SA')
     product_generator = ProductGenerator(csv_path=PRODUCTS_CSV_PATH)
 
@@ -35,8 +36,10 @@ def generate_dataset():
             tax = round(subtotal * VAT_RATE, 2)
             total = subtotal + tax
 
+            # Create basic invoice data with existing fields
             invoice_data = {
                 'invoice_ref': f"INV-{fake.numerify(text='####')}-2024",
+                'company_name': fake.company(),
                 'seller_name': fake.company(),
                 'seller_address': fake.address(),
                 'seller_vat_number': fake.numerify(text='###########'),
@@ -48,8 +51,31 @@ def generate_dataset():
                 'subtotal': f"{subtotal:.2f} ريال",
                 'tax': f"{tax:.2f} ريال",
                 'total': f"{total:.2f} ريال",
-                'products': products
+                'products': products,
+
+                # New recipient fields
+                'recipient_name': fake.name(),
+                'recipient_company': fake.company(),
+                'street_address': fake.street_address(),
+                'city_postcode': f"{fake.city()}, {fake.postcode()}",
+                'recipient_phone': fake.phone_number(),
+
+                # New shipping fields
+                'shipping_recipient_name': fake.name(),
+                'shipping_recipient_company': fake.company(),
+                'shipping_street_address': fake.street_address(),
+                'shipping_city_postcode': f"{fake.city()}, {fake.postcode()}",
+                'shipping_recipient_phone': fake.phone_number(),
+
+                # Special instructions field
+                'special_instructions': fake.paragraph(nb_sentences=2),
             }
+
+            # Create uppercase versions of all keys
+            uppercase_keys = {key.upper(): value for key, value in invoice_data.items()}
+
+            # Merge both dictionaries so the code can handle both upper and lower case placeholders
+            invoice_data.update(uppercase_keys)
 
             print("Generated invoice data")
 
