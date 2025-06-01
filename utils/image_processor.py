@@ -4,7 +4,7 @@ import os
 
 class ImageProcessor:
     @staticmethod
-    def pdf_to_images(pdf_path, output_dir, dpi=300):
+    def pdf_to_images(pdf_path, output_dir, dpi=300, format="jpg", quality=85):
         images = convert_from_path(pdf_path, dpi=dpi)
         image_paths = []
 
@@ -13,15 +13,18 @@ class ImageProcessor:
         for i, image in enumerate(images):
             if i>0:
                 pass
-            image_path = os.path.join(output_dir, f'{pdf_name}.png')
-            image.save(image_path, 'PNG')
+            # Use JPG format instead of PNG to save space
+            image_path = os.path.join(output_dir, f'{pdf_name}.{format.lower()}')
+            # PIL expects 'JPEG' not 'JPG' for the format parameter
+            save_format = "JPEG" if format.upper() == "JPG" else format.upper()
+            image.save(image_path, save_format, quality=quality)
             image_paths.append(image_path)
             print(f"Saved image: {image_path}")
             
         return image_paths
 
     @staticmethod
-    def draw_annotations(image_path, annotations, output_path):
+    def draw_annotations(image_path, annotations, output_path, format="jpg", quality=85):
         image = Image.open(image_path)
         draw = ImageDraw.Draw(image)
         
@@ -29,5 +32,11 @@ class ImageProcessor:
             x, y, w, h = ann['coordinates'].values()
             draw.rectangle(((x, y), (x + w, y + h)), outline='red', width=2)
         
-        image.save(output_path)
+        # Save with format and quality specified
+        if format.lower() == "jpg" or format.lower() == "jpeg":
+            # PIL expects 'JPEG' not 'JPG' for the format parameter
+            save_format = "JPEG" if format.upper() == "JPG" else format.upper()
+            image.save(output_path, save_format, quality=quality)
+        else:
+            image.save(output_path, format.upper())
     

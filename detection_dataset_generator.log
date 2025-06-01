@@ -1,0 +1,147 @@
+2025-05-31 06:12:22,566 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:12:35,331 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:30:25,517 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:30:49,286 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:32:45,907 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:33:33,843 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:33:54,330 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:34:40,529 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:35:33,553 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:36:40,325 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:36:40,325 - __main__ - INFO - Starting YOLO OBB data generation script with automatic data splitting...
+2025-05-31 06:36:40,325 - __main__ - INFO - Split ratios: Train=0.7, Val=0.2, Test=0.1
+2025-05-31 06:36:40,325 - __main__ - INFO - Random seed: 42
+2025-05-31 06:36:40,325 - __main__ - INFO - SOURCE_ANNOTATIONS_DIR: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_annotations
+2025-05-31 06:36:40,325 - __main__ - INFO - SOURCE_IMAGES_DIR: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_images
+2025-05-31 06:36:40,325 - __main__ - INFO - Created dataset root directory: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented
+2025-05-31 06:36:40,325 - __main__ - INFO - Created train/val/test subdirectories for images and labels
+2025-05-31 06:36:40,326 - __main__ - INFO - Found 700 annotation files
+2025-05-31 06:36:40,326 - __main__ - INFO - Found 700 image files
+2025-05-31 06:36:40,326 - __main__ - INFO - Collecting image and annotation files...
+2025-05-31 06:36:40,326 - __main__ - INFO - Looking for annotations in: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_annotations
+2025-05-31 06:36:40,326 - __main__ - INFO - Looking for images in: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_images
+2025-05-31 06:36:40,330 - __main__ - INFO - Found 700 images and 700 annotation files
+2025-05-31 06:36:40,330 - __main__ - INFO - Successfully matched 700 image-annotation pairs
+2025-05-31 06:36:40,330 - __main__ - INFO - Found 700 matching image-annotation pairs
+2025-05-31 06:36:40,330 - __main__ - INFO - Splitting files into train/validation/test sets...
+2025-05-31 06:36:40,330 - __main__ - INFO - Data split summary:
+2025-05-31 06:36:40,330 - __main__ - INFO -   Total files: 700
+2025-05-31 06:36:40,330 - __main__ - INFO -   Train: 489 (69.9%)
+2025-05-31 06:36:40,330 - __main__ - INFO -   Validation: 140 (20.0%)
+2025-05-31 06:36:40,330 - __main__ - INFO -   Test: 71 (10.1%)
+2025-05-31 06:36:40,330 - __main__ - INFO - 
+Processing train split...
+2025-05-31 06:36:44,119 - __main__ - INFO - Split 'train': 489/489 files processed successfully, 75216 total annotations
+2025-05-31 06:36:44,119 - __main__ - INFO - 
+Processing val split...
+2025-05-31 06:36:45,263 - __main__ - INFO - Split 'val': 140/140 files processed successfully, 21732 total annotations
+2025-05-31 06:36:45,264 - __main__ - INFO - 
+Processing test split...
+2025-05-31 06:36:45,848 - __main__ - INFO - Split 'test': 71/71 files processed successfully, 10969 total annotations
+2025-05-31 06:36:45,848 - __main__ - INFO - Successfully created YAML configuration file: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/obb.yaml
+2025-05-31 06:36:45,848 - __main__ - INFO - Visualizing random samples to verify bounding boxes...
+2025-05-31 06:36:45,848 - __main__ - ERROR - Error visualizing samples: No module named 'matplotlib'
+2025-05-31 06:36:45,849 - __main__ - ERROR - Traceback (most recent call last):
+  File "/var/home/abdelhak/programming/pfe/arabic_invoice_generator/detection_dataset_generator.py", line 470, in visualize_random_samples
+    import matplotlib.pyplot as plt
+ModuleNotFoundError: No module named 'matplotlib'
+
+2025-05-31 06:36:45,849 - __main__ - INFO - 
+--- Final Dataset Structure Verification ---
+2025-05-31 06:36:45,854 - __main__ - INFO - train: 978 images, 601 labels
+2025-05-31 06:36:45,856 - __main__ - INFO - val: 280 images, 220 labels
+2025-05-31 06:36:45,858 - __main__ - INFO - test: 142 images, 121 labels
+2025-05-31 06:36:45,858 - __main__ - INFO - 
+--- YOLO OBB Dataset Structure Created ---
+2025-05-31 06:36:45,858 - __main__ - INFO - Dataset root directory: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented
+2025-05-31 06:36:45,858 - __main__ - INFO - ├── images/
+2025-05-31 06:36:45,858 - __main__ - INFO - │   ├── train/
+2025-05-31 06:36:45,858 - __main__ - INFO - │   ├── val/
+2025-05-31 06:36:45,858 - __main__ - INFO - │   └── test/
+2025-05-31 06:36:45,858 - __main__ - INFO - ├── labels/
+2025-05-31 06:36:45,858 - __main__ - INFO - │   ├── train/
+2025-05-31 06:36:45,858 - __main__ - INFO - │   ├── val/
+2025-05-31 06:36:45,858 - __main__ - INFO - │   └── test/
+2025-05-31 06:36:45,858 - __main__ - INFO - ├── visualizations/
+2025-05-31 06:36:45,858 - __main__ - INFO - └── obb.yaml
+2025-05-31 06:36:45,858 - __main__ - INFO - 
+--- Processing Summary ---
+2025-05-31 06:36:45,858 - __main__ - INFO - Total Annotations: 107917
+2025-05-31 06:36:45,858 - __main__ - INFO -   - train: 75216 annotations
+2025-05-31 06:36:45,858 - __main__ - INFO -   - val: 21732 annotations
+2025-05-31 06:36:45,858 - __main__ - INFO -   - test: 10969 annotations
+2025-05-31 06:36:45,858 - __main__ - INFO - 
+Classes:
+2025-05-31 06:36:45,859 - __main__ - INFO -   - Class 0 (text): OCR text elements with oriented bounding boxes
+2025-05-31 06:36:45,859 - __main__ - INFO -  - Class 1 (table): OCR table elements with oriented bounding boxes
+2025-05-31 06:38:11,388 - __main__ - INFO - Using AUGMENTED dataset paths
+2025-05-31 06:38:11,388 - __main__ - INFO - Starting YOLO OBB data generation script with automatic data splitting...
+2025-05-31 06:38:11,389 - __main__ - INFO - Split ratios: Train=0.7, Val=0.2, Test=0.1
+2025-05-31 06:38:11,389 - __main__ - INFO - Random seed: 42
+2025-05-31 06:38:11,389 - __main__ - INFO - SOURCE_ANNOTATIONS_DIR: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_annotations
+2025-05-31 06:38:11,389 - __main__ - INFO - SOURCE_IMAGES_DIR: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_images
+2025-05-31 06:38:11,389 - __main__ - INFO - Created dataset root directory: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented
+2025-05-31 06:38:11,389 - __main__ - INFO - Created train/val/test subdirectories for images and labels
+2025-05-31 06:38:11,389 - __main__ - INFO - Found 700 annotation files
+2025-05-31 06:38:11,389 - __main__ - INFO - Found 700 image files
+2025-05-31 06:38:11,390 - __main__ - INFO - Collecting image and annotation files...
+2025-05-31 06:38:11,390 - __main__ - INFO - Looking for annotations in: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_annotations
+2025-05-31 06:38:11,390 - __main__ - INFO - Looking for images in: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/augmented_images
+2025-05-31 06:38:11,393 - __main__ - INFO - Found 700 images and 700 annotation files
+2025-05-31 06:38:11,393 - __main__ - INFO - Successfully matched 700 image-annotation pairs
+2025-05-31 06:38:11,393 - __main__ - INFO - Found 700 matching image-annotation pairs
+2025-05-31 06:38:11,393 - __main__ - INFO - Splitting files into train/validation/test sets...
+2025-05-31 06:38:11,393 - __main__ - INFO - Data split summary:
+2025-05-31 06:38:11,393 - __main__ - INFO -   Total files: 700
+2025-05-31 06:38:11,393 - __main__ - INFO -   Train: 489 (69.9%)
+2025-05-31 06:38:11,393 - __main__ - INFO -   Validation: 140 (20.0%)
+2025-05-31 06:38:11,393 - __main__ - INFO -   Test: 71 (10.1%)
+2025-05-31 06:38:11,393 - __main__ - INFO - 
+Processing train split...
+2025-05-31 06:38:14,220 - __main__ - INFO - Split 'train': 489/489 files processed successfully, 75216 total annotations
+2025-05-31 06:38:14,220 - __main__ - INFO - 
+Processing val split...
+2025-05-31 06:38:15,010 - __main__ - INFO - Split 'val': 140/140 files processed successfully, 21732 total annotations
+2025-05-31 06:38:15,010 - __main__ - INFO - 
+Processing test split...
+2025-05-31 06:38:15,387 - __main__ - INFO - Split 'test': 71/71 files processed successfully, 10969 total annotations
+2025-05-31 06:38:15,387 - __main__ - INFO - Successfully created YAML configuration file: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/obb.yaml
+2025-05-31 06:38:15,387 - __main__ - INFO - Visualizing random samples to verify bounding boxes...
+2025-05-31 06:38:16,525 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/train_augmented_invoice_664_vis.png
+2025-05-31 06:38:17,570 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/train_augmented_invoice_002_vis.png
+2025-05-31 06:38:18,092 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/train_augmented_invoice_529_vis.png
+2025-05-31 06:38:18,624 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/val_augmented_invoice_073_vis.png
+2025-05-31 06:38:19,358 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/val_augmented_invoice_674_vis.png
+2025-05-31 06:38:19,760 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/val_augmented_invoice_206_vis.png
+2025-05-31 06:38:20,794 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/test_augmented_invoice_030_vis.png
+2025-05-31 06:38:21,644 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/test_augmented_invoice_643_vis.png
+2025-05-31 06:38:22,514 - __main__ - INFO - Saved visualization to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations/test_augmented_invoice_233_vis.png
+2025-05-31 06:38:22,514 - __main__ - INFO - Saved visualizations to /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented/visualizations
+2025-05-31 06:38:22,514 - __main__ - INFO - 
+--- Final Dataset Structure Verification ---
+2025-05-31 06:38:22,518 - __main__ - INFO - train: 978 images, 601 labels
+2025-05-31 06:38:22,519 - __main__ - INFO - val: 280 images, 220 labels
+2025-05-31 06:38:22,519 - __main__ - INFO - test: 142 images, 121 labels
+2025-05-31 06:38:22,520 - __main__ - INFO - 
+--- YOLO OBB Dataset Structure Created ---
+2025-05-31 06:38:22,520 - __main__ - INFO - Dataset root directory: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/output/obb-dataset_augmented
+2025-05-31 06:38:22,520 - __main__ - INFO - ├── images/
+2025-05-31 06:38:22,520 - __main__ - INFO - │   ├── train/
+2025-05-31 06:38:22,520 - __main__ - INFO - │   ├── val/
+2025-05-31 06:38:22,520 - __main__ - INFO - │   └── test/
+2025-05-31 06:38:22,520 - __main__ - INFO - ├── labels/
+2025-05-31 06:38:22,520 - __main__ - INFO - │   ├── train/
+2025-05-31 06:38:22,520 - __main__ - INFO - │   ├── val/
+2025-05-31 06:38:22,520 - __main__ - INFO - │   └── test/
+2025-05-31 06:38:22,520 - __main__ - INFO - ├── visualizations/
+2025-05-31 06:38:22,520 - __main__ - INFO - └── obb.yaml
+2025-05-31 06:38:22,520 - __main__ - INFO - 
+--- Processing Summary ---
+2025-05-31 06:38:22,520 - __main__ - INFO - Total Annotations: 107917
+2025-05-31 06:38:22,520 - __main__ - INFO -   - train: 75216 annotations
+2025-05-31 06:38:22,520 - __main__ - INFO -   - val: 21732 annotations
+2025-05-31 06:38:22,520 - __main__ - INFO -   - test: 10969 annotations
+2025-05-31 06:38:22,520 - __main__ - INFO - 
+Classes:
+2025-05-31 06:38:22,520 - __main__ - INFO -   - Class 0 (text): OCR text elements with oriented bounding boxes
+2025-05-31 06:38:22,520 - __main__ - INFO -  - Class 1 (table): OCR table elements with oriented bounding boxes

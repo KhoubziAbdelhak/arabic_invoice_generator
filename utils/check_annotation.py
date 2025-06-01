@@ -92,7 +92,8 @@ if __name__ == "__main__":
     example_annotation_name = None
 
     if os.path.exists(base_augmented_dir) and os.path.exists(base_augmented_annotations_dir):
-        augmented_images = sorted([f for f in os.listdir(base_augmented_dir) if f.startswith("augmented_") and f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+        # Look for both PNG and JPG/JPEG files, prioritizing JPG/JPEG
+        augmented_images = sorted([f for f in os.listdir(base_augmented_dir) if f.startswith("augmented_") and f.lower().endswith(('.jpg', '.jpeg', '.png'))])
         if augmented_images:
             example_image_name = augmented_images[0] # Pick the first one
             base_name_parts = os.path.splitext(example_image_name)[0].split('_', 1) # "augmented_0_doc_for_geom" -> ["augmented", "0_doc_for_geom"]

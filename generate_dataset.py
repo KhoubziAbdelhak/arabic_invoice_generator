@@ -74,9 +74,9 @@ def generate_dataset():
             if pdf_path and os.path.exists(pdf_path):
                 print(f"Created PDF at: {pdf_path}")
 
-                # Convert to images
+                # Convert to images (using JPG format for smaller file size)
                 print("Converting to images...")
-                image_paths = ImageProcessor.pdf_to_images(pdf_path, IMAGES_DIR)
+                image_paths = ImageProcessor.pdf_to_images(pdf_path, IMAGES_DIR, format="jpg", quality=75)
 
                 # Create annotation processor instance
                 processor = AnnotationProcessor()

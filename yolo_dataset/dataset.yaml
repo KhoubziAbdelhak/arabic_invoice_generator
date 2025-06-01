@@ -1,0 +1,11 @@
+# YOLOv8 dataset configuration
+# Generated on: 2025-06-01 10:06:51
+
+path: /var/home/abdelhak/programming/pfe/arabic_invoice_generator/yolo_dataset  # dataset root dir
+train: images/train  # train images (relative to 'path')
+val: images/val  # val images (relative to 'path')
+test: images/test  # test images (optional)
+
+# Classes
+names:
+  0: text  # text regions
