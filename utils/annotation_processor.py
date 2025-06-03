@@ -79,10 +79,10 @@ class AnnotationProcessor:
         self.annotations["entities"]["ocr_text"].append({
             "text": text,
             "bbox": {
-                "x": x,
-                "y": y,
-                "width": width,
-                "height": height
+                "x": round(x),
+                "y": round(y),
+                "width": round(width),
+                "height": round(height)
             },
             "direction": direction,
             "confidence": 1.0
@@ -92,10 +92,10 @@ class AnnotationProcessor:
         """Add table entry with content"""
         self.annotations["entities"]["table"].append({
             "bbox": {
-                "x": x,
-                "y": y,
-                "width": width,
-                "height": height
+                "x": round(x),
+                "y": round(y),
+                "width": round(width),
+                "height": round(height)
             },
             "content": content,  # New field for table content
             "confidence": 1.0
