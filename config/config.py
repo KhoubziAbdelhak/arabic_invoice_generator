@@ -2,7 +2,7 @@ import os
 from docx import Document
 
 # * Directory paths
-BASE_DIR = "/var/home/abdelhak/programming/pfe/arabic_invoice_generator/"
+BASE_DIR = "/var/home/abdelhak/study/arabic_invoice_generator"
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'data', 'templates')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
 DOCX_DIR = os.path.join(OUTPUT_DIR, 'docx')
@@ -23,7 +23,7 @@ PRODUCTS_CSV_PATH = os.path.join(BASE_DIR, 'data', 'products.csv')
 # * Invoice configuration
 VAT_RATE = 0.15
 NUM_PRODUCTS_PER_INVOICE = 5
-NUM_INVOICES_TO_GENERATE = 1300
+NUM_INVOICES_TO_GENERATE = 50
 NUM_AUGMENTED_IMAGES = NUM_INVOICES_TO_GENERATE
 
 
