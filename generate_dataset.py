@@ -129,7 +129,8 @@ def generate_dataset():
                     # Process PDF and get annotations
                     annotations = processor.process_pdf(
                         pdf_path=pdf_path,
-                        image_path=image_path
+                        image_path=image_path,
+                        invoice_data=invoice_data
                     )
 
                     # Save annotations with zero-padded naming

@@ -129,14 +129,14 @@ class AnnotationVisualizer:
         try:
             # Try to load a font that supports Arabic
             # You might need to adjust the path based on your system
-            return ImageFont.truetype("/var/home/abdelhak/programming/pfe/arabic_invoice_generator/data/Amiri-Regular.ttf", size)
+            return ImageFont.truetype("/var/home/abdelhak/study/arabic_invoice_generator/data/Amiri-Regular.ttf", size)
         except:
             # Fallback to default font
             return ImageFont.load_default()
 
 def main():
     # Adjust this path to your project directory
-    base_dir = "/var/home/abdelhak/programming/pfe/arabic_invoice_generator/"
+    base_dir = "/var/home/abdelhak/study/arabic_invoice_generator/"
 
     # Initialize visualizer
     visualizer = AnnotationVisualizer(base_dir)

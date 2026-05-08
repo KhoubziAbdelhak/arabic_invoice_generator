@@ -10,18 +10,12 @@ class AnnotationProcessor:
             "version": "v1",
             "entities": {
                 "ocr_text": [],
-                "table": []  # New category for table annotations
+                "table": [],  # New category for table annotations
+                "kie_fields": [] # KIE annotations
             }
         }
-        self.reshaper_config = {
-            'delete_harakat': False,
-            'support_ligatures': True,
-            'language': 'Arabic',
-            'use_unshaped_instead_of_isolated': True
-        }
-        self.reshaper = ArabicReshaper(configuration=self.reshaper_config)
 
-    def process_pdf(self, pdf_path, image_path):
+    def process_pdf(self, pdf_path, image_path, invoice_data=None):
         with Image.open(image_path) as img:
             image_width = img.width
             image_height = img.height
@@ -46,6 +40,10 @@ class AnnotationProcessor:
                 y0 = word['top'] * scale_y
                 x1 = word['x1'] * scale_x
                 y1 = word['bottom'] * scale_y
+
+                if word['text'].replace('.', '').replace(',', '').replace('%', '').replace('-', '').isdigit():
+                    y0 -= 5
+
                 self._add_text_entry(
                     text=text,
                     x=x0,
@@ -71,6 +69,38 @@ class AnnotationProcessor:
                     height=y1 - y0,
                     content=table_content  # Include table content
                 )
+
+            # Match KIE fields if invoice_data is provided
+            if invoice_data:
+                kie_keys = ['invoice_ref', 'company_name', 'issue_datetime', 'subtotal', 'tax', 'total', 'recipient_name']
+                words = page.extract_words()
+                for key in kie_keys:
+                    val = str(invoice_data.get(key, ""))
+                    if not val:
+                        continue
+
+                    matched_words = []
+                    # Simple heuristic: find words whose text is in the target valid value
+                    # and join them to form bounding box
+                    for w in words:
+                        if w['text'] in val:
+                            matched_words.append(w)
+
+                    if matched_words:
+                        mx0 = min(w['x0'] for w in matched_words) * scale_x
+                        my0 = min(w['top'] for w in matched_words) * scale_y
+                        mx1 = max(w['x1'] for w in matched_words) * scale_x
+                        my1 = max(w['bottom'] for w in matched_words) * scale_y
+                        self.annotations["entities"]["kie_fields"].append({
+                            "label": key,
+                            "text": val,
+                            "bbox": {
+                                "x": round(mx0),
+                                "y": round(my0),
+                                "width": round(mx1 - mx0),
+                                "height": round(my1 - my0)
+                            }
+                        })
 
         return self.annotations
 
