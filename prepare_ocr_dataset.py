@@ -74,57 +74,53 @@ class OCRDatasetPreparer:
 
             crop_index = 0
             for text_entry in annotation_data["entities"]["ocr_text"]:
-                if text_entry.get("direction") == "rtl":
-                    text_label = text_entry.get("text", "")
-                    if not text_label.strip():  # Skip empty or whitespace-only labels
+                text_label = text_entry.get("text", "")
+                if not text_label.strip():  # Skip empty or whitespace-only labels
+                    continue
+
+                if "bounding_poly" in text_entry and "vertices" in text_entry["bounding_poly"]:
+                    vertices = text_entry["bounding_poly"]["vertices"]
+                    bbox = self._get_bounding_box_from_poly(vertices)
+                elif "bbox" in text_entry:
+                    b = text_entry["bbox"]
+                    bbox = (int(b["x"]), int(b["y"]), int(b["x"] + b["width"]), int(b["y"] + b["height"]))
+                else:
+                    bbox = None
+
+                if bbox is not None:
+                    min_x, min_y, max_x, max_y = bbox
+
+                    # Add padding
+                    padded_min_x = max(0, min_x - self.padding)
+                    padded_min_y = max(0, min_y - self.padding)
+                    padded_max_x = min(img_width, max_x + self.padding)
+                    padded_max_y = min(img_height, max_y + self.padding)
+
+                    # Ensure the box has a positive area after padding
+                    if padded_max_x <= padded_min_x or padded_max_y <= padded_min_y:
+                        # print(f"Skipping zero-area crop for '{text_label}' in {image_filename} after padding.")
                         continue
 
-                    if "bounding_poly" in text_entry and "vertices" in text_entry["bounding_poly"]:
-                        vertices = text_entry["bounding_poly"]["vertices"]
-                        bbox = self._get_bounding_box_from_poly(vertices)
+                    try:
+                        cropped_img = img.crop((padded_min_x, padded_min_y, padded_max_x, padded_max_y))
+                    except Exception as crop_e:
+                        print(f"Error cropping '{text_label}' in {image_filename} with box {bbox}: {crop_e}")
+                        continue
 
-                        if bbox is None:
-                            print(f"Skipping entry with no vertices: '{text_label}' in {annotation_filename}")
-                            continue
+                    # Save cropped image (using PNG for potentially better OCR quality)
+                    base_image_name_no_ext = os.path.splitext(image_filename)[0]
+                    cropped_filename = f"{base_image_name_no_ext}_crop_{crop_index}.png"
+                    cropped_image_save_path = os.path.join(self.cropped_images_output_dir, cropped_filename)
 
-                        min_x, min_y, max_x, max_y = bbox
-
-                        # Add padding
-                        padded_min_x = max(0, min_x - self.padding)
-                        padded_min_y = max(0, min_y - self.padding)
-                        padded_max_x = min(img_width, max_x + self.padding)
-                        padded_max_y = min(img_height, max_y + self.padding)
-
-                        # Ensure the box has a positive area after padding
-                        if padded_max_x <= padded_min_x or padded_max_y <= padded_min_y:
-                            # print(f"Skipping zero-area crop for '{text_label}' in {image_filename} after padding.")
-                            continue
-
-                        try:
-                            cropped_img = img.crop((padded_min_x, padded_min_y, padded_max_x, padded_max_y))
-                        except Exception as crop_e:
-                            print(f"Error cropping '{text_label}' in {image_filename} with box {bbox}: {crop_e}")
-                            continue
-
-
-                        # Save cropped image (using PNG for potentially better OCR quality)
-                        base_image_name_no_ext = os.path.splitext(image_filename)[0]
-                        cropped_filename = f"{base_image_name_no_ext}_crop_{crop_index}.png"
-                        cropped_image_save_path = os.path.join(self.cropped_images_output_dir, cropped_filename)
-
-                        try:
-                            cropped_img.save(cropped_image_save_path)
-                             # Store label data: relative path from labels.txt location which is ocr_dataset_root_dir
-                            relative_cropped_path = os.path.join('images', cropped_filename)
-                            self.labels_data.append(f"{relative_cropped_path}\t{text_label}")
-                            crop_index += 1
-                        except Exception as save_e:
-                            print(f"Error saving cropped image {cropped_image_save_path}: {save_e}")
-                            continue
-                    else:
-                        # This case might occur if some RTL entries don't use bounding_poly
-                        # print(f"Skipping RTL text entry without 'bounding_poly': '{text_label}' in {annotation_filename}")
-                        pass
+                    try:
+                        cropped_img.save(cropped_image_save_path)
+                         # Store label data: relative path from labels.txt location which is ocr_dataset_root_dir
+                        relative_cropped_path = os.path.join('images', cropped_filename)
+                        self.labels_data.append(f"{relative_cropped_path}\t{text_label}")
+                        crop_index += 1
+                    except Exception as save_e:
+                        print(f"Error saving cropped image {cropped_image_save_path}: {save_e}")
+                        continue
 
 
         except Exception as e:

@@ -36,6 +36,19 @@ def generate_dataset():
             tax = round(subtotal * VAT_RATE, 2)
             total = subtotal + tax
 
+            arabic_instructions = [
+                "يرجى تسليم الفاتورة مع الشحنة.",
+                "الدفع خلال 30 يومًا من تاريخ الإصدار.",
+                "يرجى التأكد من سلامة المنتجات قبل الاستلام.",
+                "لا تقبل المرتجعات بعد فتح العبوة.",
+                "يُرجى التواصل مع خدمة العملاء عند وجود أي مشكلة.",
+                "يجب ختم الفاتورة عند الاستلام.",
+                "الشحن غير شامل رسوم التفريغ.",
+                "يرجى مطابقة الكميات مع أمر الشراء.",
+                "يتم التسليم خلال أيام العمل الرسمية فقط.",
+                "جميع الأسعار تشمل ضريبة القيمة المضافة.",
+            ]
+
             # Create basic invoice data with existing fields
             invoice_data = {
                 'invoice_ref': f"INV-{fake.numerify(text='####')}-2024",
@@ -68,7 +81,7 @@ def generate_dataset():
                 'shipping_recipient_phone': fake.phone_number(),
 
                 # Special instructions field
-                'special_instructions': fake.paragraph(nb_sentences=2),
+                'special_instructions': " ".join(random.sample(arabic_instructions, k=2)),
             }
 
             # Create uppercase versions of all keys

@@ -40,8 +40,8 @@ class AnnotationProcessor:
 
             # Extract word-level text annotations
             for word in page.extract_words():
-                text = word['text']
-                text = get_display(text)  # Convert to visual display order
+                text = get_display(word['text'])
+                # Re-added get_display(text) to fix backwards Arabic text from pdfplumber
                 x0 = word['x0'] * scale_x
                 y0 = word['top'] * scale_y
                 x1 = word['x1'] * scale_x
@@ -105,7 +105,7 @@ class AnnotationProcessor:
         """Process line of characters with proper Arabic shaping"""
         chars_sorted = sorted(chars, key=lambda c: c['x0'], reverse=True)
         text = ''.join([c['text'] for c in chars_sorted])
-        text = get_display(text)  # Convert to visual display order
+        # Removed get_display(text) for OCR ground truth
         x0 = min(c['x0'] for c in chars_sorted) * scale_x
         y0 = min(c['top'] for c in chars_sorted) * scale_y
         x1 = max(c['x1'] for c in chars_sorted) * scale_x
