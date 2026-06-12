@@ -1,0 +1,10 @@
+faker
+python-docx
+pdf2image
+Pillow
+pdfplumber
+opencv-python-headless
+numpy
+pandas
+PyMuPDF
+matplotlib
